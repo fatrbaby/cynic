@@ -1,7 +1,7 @@
 mod project;
 
-use std::env::current_dir;
 use project::Project;
+use std::env::current_dir;
 
 fn main() {
     let cwd = current_dir().expect("can not get current path");
@@ -9,4 +9,3 @@ fn main() {
 
     p.show_setting();
 }
-

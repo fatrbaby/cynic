@@ -1,10 +1,10 @@
+use directories::BaseDirs;
+use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 use std::fs;
 use std::fs::File;
 use std::io::Write;
-use directories::BaseDirs;
 use std::path::{Path, PathBuf};
-use sha2::{Sha256, Digest};
-use serde::{Deserialize, Serialize};
 
 #[derive(Debug)]
 pub struct Project {
@@ -14,16 +14,12 @@ pub struct Project {
 impl Project {
     pub fn new(workdir: &Path) -> Project {
         match BaseDirs::new() {
-            None => {
-                Project {
-                    setting: Setting::of(Path::new("~"), workdir),
-                }
-            }
-            Some(base_dir) => {
-                Project {
-                    setting: Setting::of(base_dir.home_dir(), workdir),
-                }
-            }
+            None => Project {
+                setting: Setting::of(Path::new("~"), workdir),
+            },
+            Some(base_dir) => Project {
+                setting: Setting::of(base_dir.home_dir(), workdir),
+            },
         }
     }
 }
