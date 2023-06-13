@@ -1,4 +1,5 @@
 mod project;
+mod php;
 
 use project::Project;
 use std::env::current_dir;
